@@ -16,16 +16,16 @@
             <div class="button-bar">
                 <div class="row">
                     <div class="col-12">
-                        <button class="btn btn-primary">Customer</button>
+                        <button class="btn btn-primary" onclick="setUi('customer.html');" >Customer</button>
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-primary">Item</button>
+                        <button class="btn btn-primary" onclick="setUi('item.html');">Item</button>
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-primary">Order Details</button>
+                        <button class="btn btn-primary" onclick="setUi('orders.html');">Order Details</button>
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-primary">Place Order</button>
+                        <button class="btn btn-primary" onclick="setUi('place-order.html');">Place Order</button>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     <img id="avatar"  alt="avatar">
                 </div>
             </div>
-            <div class="container"></div>
+            <div class="container" id="container" ></div>
         </div>
     </div>
 
