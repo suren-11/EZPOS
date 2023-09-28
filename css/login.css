@@ -21,3 +21,16 @@
     -moz-box-shadow: 4px 4px 21px -1px rgba(0,0,0,0.75);
     box-shadow: 4px 4px 21px -1px rgba(0,0,0,0.75);
 }
+h3{
+    text-align: center;
+    color: #2980b9;
+}
+.row{
+    margin: 0;
+}
+.col-12{
+    margin-bottom: 20px;
+}
+button{
+    width: 100%;
+}
