@@ -15,8 +15,11 @@ initializeCustomers = () => {
     }
 }
 
-const launchModel = ()=>{
-    document.getElementById('success-model').click();
+const launchModel = (type,message)=>{
+    //document.getElementById('success-model').click();
+    $('#exampleModalLabel').html(type);
+    $('#modal-body').html(message);
+
     $('#success-model').click();
 }
 
@@ -32,9 +35,9 @@ function saveCustomer() {
         customers.push(customer);
         localStorage.setItem('customers', JSON.stringify(customers));
         clearFields();
-        launchModel();
+        launchModel('success!','Customer Saved');
     }else {
-        alert('Already Exists!');
+        launchModel('warning!','Already exists');
     }
 }
 
