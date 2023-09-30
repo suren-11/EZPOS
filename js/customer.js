@@ -26,11 +26,24 @@ function setTableData(){
     <td>${data.salary}</td>
     <td>
     <button class="btn btn-success btn-sm" onclick="loadUpdateModel('${data.id}','${data.name}','${data.address}','${data.salary}');" >Update</button> |
-    <button class="btn btn-danger btn-sm" >Delete</button>
+    <button class="btn btn-danger btn-sm" onclick="deleteModel('${data.id}')"; >Delete</button>
 </td>
 </tr>`;
     });
     $('#table-body').html(htmlData);
+}
+
+function deleteModel(id){
+   if (confirm('are you sure?')){
+       for (let tempId=0; tempId<customers.length; tempId++){
+           if (customers[tempId].id === id){
+               customers.splice(tempId,1);
+               localStorage.setItem('customers', JSON.stringify(customers));
+               launchModel('deleted!', 'Customer deleted');
+               setTableData();
+           }
+       }
+   }
 }
 
 const launchModel = (type, message) => {
