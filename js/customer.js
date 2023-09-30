@@ -54,6 +54,7 @@ function saveCustomer() {
         localStorage.setItem('customers', JSON.stringify(customers));
         clearFields();
         launchModel('success!', 'Customer Saved');
+        setTableData();
     } else {
         launchModel('warning!', 'Already exists');
     }
