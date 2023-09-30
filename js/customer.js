@@ -79,12 +79,27 @@ const clearFields = () => {
     $('#customerAddress').val('');
     $('#customerSalary').val('');
 }
-
+let tempCId = 0;
 const loadUpdateModel=(id,name,address,salary)=>{
+    tempCId = id;
     $('#update-customer-id').val(id);
     $('#update-customer-name').val(name);
     $('#update-customer-address').val(address);
     $('#update-customer-salary').val(salary);
 
     $('#update-model').click();
+}
+
+function updateCustomer(){
+    for (let tempId=0; tempId<customers.length; tempId++){
+        if (customers[tempId].id === tempCId){
+            customers[tempId].name=$('#update-customer-name').val();
+            customers[tempId].address=$('#update-customer-address').val();
+            customers[tempId].salary=Number($('#update-customer-salary').val());
+            localStorage.setItem('customers', JSON.stringify(customers));
+            $('#update-close').click();
+            launchModel('updated!', 'Customer updated');
+            setTableData();
+        }
+    }
 }
