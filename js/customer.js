@@ -17,9 +17,11 @@ initializeCustomers = () => {
 }
 
 function setTableData(){
+    searchText = $('#search').val();
     let htmlData = '';
     customers.forEach(data => {
-        htmlData += `<tr>
+        if (data.name.includes(searchText) || data.address.includes(searchText)){
+            htmlData += `<tr>
     <td>${data.id}</td>
     <td>${data.name}</td>
     <td>${data.address}</td>
@@ -29,6 +31,8 @@ function setTableData(){
     <button class="btn btn-danger btn-sm" onclick="deleteModel('${data.id}')"; >Delete</button>
 </td>
 </tr>`;
+        }
+
     });
     $('#table-body').html(htmlData);
 }
