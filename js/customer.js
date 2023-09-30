@@ -25,7 +25,7 @@ function setTableData(){
     <td>${data.address}</td>
     <td>${data.salary}</td>
     <td>
-    <button class="btn btn-success btn-sm" onclick="loadUpdateModel(${data});" >Update</button> |
+    <button class="btn btn-success btn-sm" onclick="loadUpdateModel('${data.id}','${data.name}','${data.address}','${data.salary}');" >Update</button> |
     <button class="btn btn-danger btn-sm" >Delete</button>
 </td>
 </tr>`;
@@ -35,8 +35,8 @@ function setTableData(){
 
 const launchModel = (type, message) => {
     //document.getElementById('success-model').click();
-    $('#exampleModalLabel').html(type);
-    $('#modal-body').html(message);
+    $('#saveExampleModalLabel').html(type);
+    $('#save-data-modal-body').html(message);
 
     $('#success-model').click();
 }
@@ -66,11 +66,11 @@ const clearFields = () => {
     $('#customerSalary').val('');
 }
 
-const loadUpdateModel=(data)=>{
-    $('#update-customer-id').value(data.id);
-    $('#update-customer-name').value(data.name);
-    $('#update-customer-address').value(data.address);
-    $('#update-customer-salary').value(data.salary);
+const loadUpdateModel=(id,name,address,salary)=>{
+    $('#update-customer-id').val(id);
+    $('#update-customer-name').val(name);
+    $('#update-customer-address').val(address);
+    $('#update-customer-salary').val(salary);
 
     $('#update-model').click();
 }
