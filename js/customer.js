@@ -25,7 +25,7 @@ function setTableData(){
     <td>${data.address}</td>
     <td>${data.salary}</td>
     <td>
-    <button class="btn btn-success btn-sm" >Update</button> |
+    <button class="btn btn-success btn-sm" onclick="loadUpdateModel(${data});" >Update</button> |
     <button class="btn btn-danger btn-sm" >Delete</button>
 </td>
 </tr>`;
@@ -64,4 +64,13 @@ const clearFields = () => {
     $('#customerName').val('');
     $('#customerAddress').val('');
     $('#customerSalary').val('');
+}
+
+const loadUpdateModel=(data)=>{
+    $('#update-customer-id').value(data.id);
+    $('#update-customer-name').value(data.name);
+    $('#update-customer-address').value(data.address);
+    $('#update-customer-salary').value(data.salary);
+
+    $('#update-model').click();
 }
