@@ -1,7 +1,7 @@
 loadUserDetails=()=>{
-    $('#item').hide();
-    $('#order').hide();
-    $('#placeOrder').hide();
+    // $('#item').hide();
+    // $('#order').hide();
+    // $('#placeOrder').hide();
     try{
         let userDetails =
             JSON.parse(localStorage.getItem('user'));
@@ -14,17 +14,18 @@ loadUserDetails=()=>{
     }
 }
 
-function setUi(id){
+function setUi(location){
+    $('#frame').attr('src',location);
 
-    $('#customer').fadeOut(1000);
-    $('#item').fadeOut(1000);
-    $('#order').fadeOut(1000);
-    $('#placeOrder').fadeOut(1000);
+    // $('#customer').fadeOut(1000);
+    // $('#item').fadeOut(1000);
+    // $('#order').fadeOut(1000);
+    // $('#placeOrder').fadeOut(1000);
 
-    switch (id) {
-        case "customer":$('#customer').fadeIn(1000);break;
-        case "item":$('#item').fadeIn(1000);break;
-        case "order":$('#order').fadeOut(1000);break;
-        case "placeOrder":$('#placeOrder').fadeOut(1000);break;
-    }
+    /*switch (id) {
+        case "customer":$('#frame').attr('src','../pages/customer.html');break;
+        case "item":$('#frame').attr('src','../pages/item.html');break;
+        case "order":$('#frame').attr('src','../pages/orders.html');break;
+        case "placeOrder":$('#frame').attr('src','../pages/place-order.html');break;
+    }*/
 }
