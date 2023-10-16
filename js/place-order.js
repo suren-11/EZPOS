@@ -2,6 +2,7 @@
 
 let items=[];
 let customers = [];
+let cart = [];
 
 const loadData = () => {
 
@@ -49,4 +50,52 @@ function loadItemData(){
     $('#description').val(item.description);
     $('#unit-price').val(item.unitPrice);
     $('#qty-on-hand').val(item.qtyOnHand);
+}
+function Cart(code,description,unitPrice,qty,total){
+    this.code =code;
+    this.description =description;
+    this.unitPrice =unitPrice;
+    this.qty =qty;
+    this.total =total;
+}
+
+function addToCard(){
+    let qty = Number($('#qty').val());
+    let unitPrice = Number($('#unit-price').val());
+    let total = qty * unitPrice;
+
+   let tempCart = new Cart(
+        $('#item-code').val(),
+        $('#description').val(),
+        unitPrice,
+        qty,
+        total
+    );
+   cart.push(tempCart);
+
+   setCartData();
+};
+
+const setCartData = () =>{
+    let rows = ``;
+    cart.forEach(response=>{
+        rows+=`<tr>
+<td>${response.code}</td>
+<td>${response.description}</td>
+<td>${response.unitPrice}</td>
+<td>${response.qty}</td>
+<td>${response.total}</td>
+<td><button class="btn btn-danger btn-sm" onclick="#" >Delete</button></td>
+</tr>`
+    });
+$('#table').html(rows);
+calculateTotal();
+}
+
+calculateTotal = () =>{
+    let netTotal = 0;
+    cart.forEach(response=>{
+        netTotal+=response.total;
+    });
+    $('#total').html(netTotal);
 }

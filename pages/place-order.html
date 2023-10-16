@@ -63,7 +63,7 @@
         </div>
         <div class="col-12" style="margin-top: 5px" >
             <p style="text-align: right" >
-                <button class="btn btn-primary btn-sm">Add to Cart</button>
+                <button class="btn btn-primary btn-sm" onclick="addToCard()" >Add to Cart</button>
             </p>
         </div>
     </div>
@@ -80,12 +80,15 @@
                     <th>Options</th>
                 </tr>
             </thead>
+            <tbody id="table" >
+
+            </tbody>
         </table>
     </div>
 
     <hr>
     <div class="bottom">
-        <h1 class="total" >Total : 25000/=</h1>
+        <h1 class="total" >Total : <span id="total" >0</span> /=</h1>
         <button class="btn btn-primary btn-sm" >Place Order</button>
     </div>
     <!--process-->
