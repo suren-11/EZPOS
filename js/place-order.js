@@ -63,16 +63,21 @@ function addToCard(){
     let qty = Number($('#qty').val());
     let unitPrice = Number($('#unit-price').val());
     let total = qty * unitPrice;
+    let rowNumber = isExists($('#item-code').val())
 
-   let tempCart = new Cart(
-        $('#item-code').val(),
-        $('#description').val(),
-        unitPrice,
-        qty,
-        total
-    );
-   cart.push(tempCart);
-
+    if (rowNumber!=-1){
+        cart[rowNumber].qty = cart[rowNumber].qty+qty;
+        cart[rowNumber].total = cart[rowNumber].total+total;
+    }else {
+        let tempCart = new Cart(
+            $('#item-code').val(),
+            $('#description').val(),
+            unitPrice,
+            qty,
+            total
+        );
+        cart.push(tempCart);
+    }
    setCartData();
 };
 
@@ -98,4 +103,13 @@ calculateTotal = () =>{
         netTotal+=response.total;
     });
     $('#total').html(netTotal);
+}
+
+const isExists = (code)=>{
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].code === code){
+            return i;
+        }
+    }
+    return -1;
 }
