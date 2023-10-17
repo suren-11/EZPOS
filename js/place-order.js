@@ -170,10 +170,28 @@ function placeOrder(){
     let order = new Order($('#orderId').html(),$('#date').html(),$('#total').html(),$('#customer-id').val(),orderItemsArr);
     tempOrderArr.push(order)
     localStorage.setItem('orders',JSON.stringify(tempOrderArr));
+
+    updateItemQty(orderItemsArr);
     generateOrderId()
     cart=[];
     setCartData();
     alert("order placed");
+}
+
+const updateItemQty = (details)=>{
+    let itemArr = JSON.parse(localStorage.getItem('items'));
+    details.forEach(responseData=>{
+        if (itemArr !== null){
+            for (let i = 0; i < itemArr.length; i++) {
+                if (itemArr[i].code === responseData.code){
+                    itemArr[i].qtyOnHand = (itemArr[i].qtyOnHand - responseData.qty);
+                    break;
+                }
+            }
+        }
+    });
+    localStorage.setItem('items',JSON.stringify(itemArr));
+    loadData();
 }
 
 const removeItem=(code)=>{
