@@ -91,7 +91,7 @@ function addToCard(){
         cart.push(tempCart);
     }
    setCartData();
-};
+}
 
 const setCartData = () =>{
     let rows = ``;
@@ -102,7 +102,7 @@ const setCartData = () =>{
 <td>${response.unitPrice}</td>
 <td>${response.qty}</td>
 <td>${response.total}</td>
-<td><button class="btn btn-danger btn-sm" onclick="#" >Delete</button></td>
+<td><button class="btn btn-danger btn-sm" onclick="removeItem('${response.code}');" >Delete</button></td>
 </tr>`
     });
 $('#table').html(rows);
@@ -128,7 +128,7 @@ const isExists = (code)=>{
 const generateOrderId=()=>{
     let tempOrderData = JSON.parse(localStorage.getItem('orders'));
     if (tempOrderData == null){
-        $('#orderId').html("OD-001");
+        $('#orderId').html("OD-1");
     }else {
         // let last = tempOrderData[tempOrderData.length-1];
         // let lastId = last.orderId;
@@ -138,9 +138,51 @@ const generateOrderId=()=>{
         // let incrementedId = numId++;
         // let finalId = "OD-"+incrementedId;
         // $('#orderId').html(finalId);
-        let tempId = Number(tempOrderData[tempOrderData.length-1].orderId.split('-')[1]);
+        let tempId = Number(tempOrderData[tempOrderData.length-1].orderId.split('-')[1])+1;
         let finalId = "OD-"+tempId;
         $('#orderId').html(finalId);
 
+    }
+}
+function Order(orderId,date,total,customer,orderItems){
+    this.orderId = orderId;
+    this.date = date;
+    this.total = total;
+    this.customer = customer;
+    this.orderItems = orderItems;
+}
+function OrderItems(code,qty,total){
+    this.code = code;
+    this.qty = qty
+    this.total = total;
+}
+function placeOrder(){
+    let tempOrderArr = [];
+    let tempOrdersData = JSON.parse(localStorage.getItem('orders'));
+    if (tempOrdersData !== null){
+        tempOrderArr=tempOrdersData;
+    }
+    let orderItemsArr=[];
+    cart.forEach(response=>{
+        let item = new OrderItems(response.code,response.qty,response.total)
+        orderItemsArr.push(item);
+    });
+    let order = new Order($('#orderId').html(),$('#date').html(),$('#total').html(),$('#customer-id').val(),orderItemsArr);
+    tempOrderArr.push(order)
+    localStorage.setItem('orders',JSON.stringify(tempOrderArr));
+    generateOrderId()
+    cart=[];
+    setCartData();
+    alert("order placed");
+}
+
+const removeItem=(code)=>{
+    if (confirm("are you sure? ")){
+        for (let i = 0; i < cart.length; i++) {
+            if (cart[i].code === code){
+                cart.splice(i,1);
+                setCartData();
+            }
+        }
     }
 }
