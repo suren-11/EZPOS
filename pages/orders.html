@@ -28,7 +28,67 @@
         </tbody>
     </table>
 </div>
+<!--model-->
+<!-- Button trigger modal -->
+<button type="button" style="display: none" id="model-button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Order Details</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table" >
+                    <tr>
+                        <td>Order Id</td>
+                        <td id="orderId" >??</td>
+                    </tr>
+                    <tr>
+                        <td>Order Cost</td>
+                        <td id="orderCost">??</td>
+                    </tr>
+                    <tr>
+                        <td>Order Date</td>
+                        <td id="orderDate">??</td>
+                    </tr>
+                    <tr>
+                        <td>Customer Id</td>
+                        <td id="customerId" >??</td>
+                    </tr>
+                    <tr>
+                        <td>Customer Name</td>
+                        <td id="customerName" >??</td>
+                    </tr>
+                </table>
+                <hr>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Item Code</th>
+                        <th>Item Description</th>
+                        <th>Unit Price</th>
+                        <th>Qty</th>
+                        <th>Cost</th>
+                    </tr>
+                    </thead>
+                    <tbody id="iTable">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="print();" >Print Data</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--model-->
 
 <script src="../js/orders.js" type="text/javascript" ></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
